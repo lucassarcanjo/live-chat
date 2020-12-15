@@ -20,11 +20,7 @@ const ChatInput = ({ sendMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!message) {
-      console.log("empty message"); // TODO show tooltip
-
-      return;
-    }
+    if (!message) return;
 
     await sendMessage(user, message);
     setMessage("");

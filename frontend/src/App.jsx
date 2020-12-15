@@ -5,6 +5,8 @@ import {
   websocketHubUrl,
   sendMessageHubMethod,
   receiveMessageClientMethod,
+  userNotificationClientMethod,
+  signInHubMethod,
 } from "./constants";
 import MessageHistory from "./containers/messagehistory";
 import ChatInput from "./containers/chatinput";
@@ -19,22 +21,30 @@ const App = () => {
   chatRef.current = chat;
 
   useEffect(() => {
-    const connection = new HubConnectionBuilder()
-      .withUrl(websocketHubUrl)
-      .withAutomaticReconnect()
-      .build();
+    // TODO provide user feedback of connection status
+    const hubInitialize = async () => {
+      const connection = new HubConnectionBuilder()
+        .withUrl(websocketHubUrl)
+        .withAutomaticReconnect()
+        .build();
 
-    connection
-      .start()
-      .then(() => {
-        connection.on(receiveMessageClientMethod, (chatMessage) => {
-          setChat([...chatRef.current, chatMessage]);
-        });
+      await connection.start();
 
-        setHubConnection(connection);
-      })
+      connection.invoke(signInHubMethod, "vandecoo");
 
-      .catch((e) => console.log("Connection failed: ", e));
+      // Subscribe to connection events raised from server
+      connection.on(receiveMessageClientMethod, (chatMessage) => {
+        setChat([...chatRef.current, chatMessage]);
+      });
+
+      connection.on(userNotificationClientMethod, (username) => {
+        setChat([...chatRef.current, { user: username, message: "cheguei" }]);
+      });
+
+      setHubConnection(connection);
+    };
+
+    hubInitialize();
   }, []);
 
   const sendMessage = async (user, message) => {
@@ -45,9 +55,12 @@ const App = () => {
       message,
     };
 
-    await hubConnection.invoke(sendMessageHubMethod, chatMessage);
-
-    setChat([...chat, chatMessage]);
+    try {
+      await hubConnection.invoke(sendMessageHubMethod, chatMessage);
+      setChat([...chat, chatMessage]);
+    } catch (err) {
+      // TODO return user feedback
+    }
   };
 
   return (
