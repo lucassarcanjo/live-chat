@@ -31,7 +31,7 @@ namespace LiveChat
                 options.AddDefaultPolicy(policy =>
                     policy.AllowAnyHeader()
                           .AllowAnyMethod()
-                          .WithOrigins("http://localhost:3000")
+                          .WithOrigins(Configuration["FrontendUrl"])
                           .AllowCredentials()));
 
             services.AddControllers();
