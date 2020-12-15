@@ -17,7 +17,7 @@ const ChatInput = ({ sendMessage }) => {
       .then((text) => setUser(text));
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!message) {
@@ -26,7 +26,7 @@ const ChatInput = ({ sendMessage }) => {
       return;
     }
 
-    sendMessage(user, message);
+    await sendMessage(user, message);
     setMessage("");
   };
 

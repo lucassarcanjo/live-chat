@@ -5,6 +5,8 @@ namespace LiveChat.Hubs
 {
     public interface IChatClient
     {
-        Task ReceiveMessage(ChatMessage message);
+        Task BroadcastMessage(ChatMessage message);
+
+        Task NewUserNotification(string username);
     }
 }
