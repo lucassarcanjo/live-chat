@@ -12,7 +12,9 @@ import MessageHistory from "./containers/messagehistory";
 import ChatInput from "./containers/chatinput";
 
 import "./styles/global.scss";
+import "./App.scss";
 import "fontsource-poppins";
+import Button from "./components/button";
 
 const App = () => {
   const [hubConnection, setHubConnection] = useState(null);
@@ -53,6 +55,7 @@ const App = () => {
     const chatMessage = {
       user,
       message,
+      isMine: true,
     };
 
     try {
@@ -64,11 +67,19 @@ const App = () => {
   };
 
   return (
-    <div className="wrapper">
-      <main className="chatbox">
-        <MessageHistory chat={chat} />
-        <ChatInput sendMessage={sendMessage} />
-      </main>
+    <div className="chat">
+      <header className="chat__header">
+        <h2 className="chat__title">Group Chat</h2>
+        <Button label="Messages" type="button" className="chat__button" />
+        <Button
+          label="Participants"
+          type="button"
+          className="chat__button"
+          variant="secondary"
+        />
+      </header>
+      <MessageHistory chat={chat} className="chat__main" />
+      <ChatInput sendMessage={sendMessage} className="chat__footer" />
     </div>
   );
 };

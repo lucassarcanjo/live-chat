@@ -1,0 +1,21 @@
+.chatinput {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  position: relative;
+
+  &__input {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    width: 100%;
+  }
+
+  &__button {
+    position: absolute;
+    right: 24px;
+    height: 38px;
+  }
+}

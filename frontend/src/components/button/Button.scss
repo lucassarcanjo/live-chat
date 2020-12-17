@@ -1,0 +1,34 @@
+.button {
+  border-radius: 10px;
+  border: 0;
+  padding: 12px 10px;
+  font-weight: 500;
+  line-height: 1;
+
+  &--action {
+    background-color: #007a67;
+    color: #fff;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  &--primary {
+    background-color: #d3e8e9;
+    color: #007a67;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: #777d8e;
+
+    &:hover {
+      background-color: #ced2db;
+    }
+  }
+}

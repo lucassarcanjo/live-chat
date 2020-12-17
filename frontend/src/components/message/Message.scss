@@ -1,0 +1,12 @@
+.message {
+  background-color: #fff;
+  display: block;
+  width: fit-content;
+  padding: 16px;
+  margin: 8px;
+  border-radius: 10px;
+
+  &--mine {
+    align-self: flex-end;
+  }
+}

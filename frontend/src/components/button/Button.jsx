@@ -6,22 +6,21 @@ import ClassNames from "classnames";
 
 import "./Button.scss";
 
-const Button = ({ label, icon, type, className, ...props }) => {
-  const elementClasses = ClassNames(className, "button__wrapper");
+const Button = ({ label, icon, type, variant, className, ...props }) => {
+  const elementClasses = ClassNames(className, `button--${variant}`, "button");
 
   return (
-    <div>
-      <button {...props} type={type} className={elementClasses}>
-        {icon}
-        {label}
-      </button>
-    </div>
+    <button {...props} type={type} className={elementClasses}>
+      {icon}
+      {label}
+    </button>
   );
 };
 
 Button.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.func,
+  variant: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string.isRequired,
 };
@@ -29,6 +28,7 @@ Button.propTypes = {
 Button.defaultProps = {
   label: "",
   icon: <></>,
+  variant: "primary",
   className: "",
 };
 

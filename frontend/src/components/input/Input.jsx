@@ -7,11 +7,7 @@ import "./Input.scss";
 const Input = ({ className, type, ...props }) => {
   const elementClasses = ClassNames(className, "input__wrapper");
 
-  return (
-    <div>
-      <input {...props} type={type} className={elementClasses} />
-    </div>
-  );
+  return <input {...props} type={type} className={elementClasses} />;
 };
 
 Input.propTypes = {
