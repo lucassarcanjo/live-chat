@@ -1,70 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { HubConnectionBuilder, HubConnectionState } from "@microsoft/signalr";
+import React, { useEffect, useState } from "react";
 
-import {
-  websocketHubUrl,
-  sendMessageHubMethod,
-  receiveMessageClientMethod,
-  userNotificationClientMethod,
-  signInHubMethod,
-} from "./constants";
 import MessageHistory from "./containers/messagehistory";
 import ChatInput from "./containers/chatinput";
+import Button from "./components/button";
+
+import useChat from "./hooks/useChat";
 
 import "./styles/global.scss";
 import "./App.scss";
 import "fontsource-poppins";
-import Button from "./components/button";
 
 const App = () => {
-  const [hubConnection, setHubConnection] = useState(null);
-  const [chat, setChat] = useState([]);
-  const chatRef = useRef(chat);
-  chatRef.current = chat;
+  const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    // TODO provide user feedback of connection status
-    const hubInitialize = async () => {
-      const connection = new HubConnectionBuilder()
-        .withUrl(websocketHubUrl)
-        .withAutomaticReconnect()
-        .build();
+  // TODO get random value for  username
+  const [chat, sendChatMessage] = useChat(username);
 
-      await connection.start();
-
-      connection.invoke(signInHubMethod, "vandecoo");
-
-      // Subscribe to connection events raised from server
-      connection.on(receiveMessageClientMethod, (chatMessage) => {
-        setChat([...chatRef.current, chatMessage]);
-      });
-
-      connection.on(userNotificationClientMethod, (username) => {
-        setChat([...chatRef.current, { user: username, message: "cheguei" }]);
-      });
-
-      setHubConnection(connection);
-    };
-
-    hubInitialize();
-  }, []);
-
-  const sendMessage = async (user, message) => {
-    if (hubConnection?.state !== HubConnectionState.Connected) return; // TODO return user feedback
-
-    const chatMessage = {
-      user,
-      message,
-      isMine: true,
-    };
-
-    try {
-      await hubConnection.invoke(sendMessageHubMethod, chatMessage);
-      setChat([...chat, chatMessage]);
-    } catch (err) {
-      // TODO return user feedback
-    }
-  };
+  useEffect(() => setUsername("vandeco"), []);
 
   return (
     <div className="chat">
@@ -79,7 +31,7 @@ const App = () => {
         />
       </header>
       <MessageHistory chat={chat} className="chat__main" />
-      <ChatInput sendMessage={sendMessage} className="chat__footer" />
+      <ChatInput sendMessage={sendChatMessage} className="chat__footer" />
     </div>
   );
 };
