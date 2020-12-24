@@ -12,12 +12,6 @@ import "./ChatInput.scss";
 const ChatInput = ({ sendMessage, className, ...props }) => {
   const [message, setMessage] = useState("");
 
-  // useEffect(() => {
-  //   fetch(fakeNameGeneratorApi)
-  //     .then((response) => response.text())
-  //     .then((text) => setUser(text));
-  // }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

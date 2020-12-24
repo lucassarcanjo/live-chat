@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import ClassNames from "classnames";
 
@@ -7,7 +7,14 @@ import Message from "../../components/message";
 import "./MessageHistory.scss";
 
 const MessageHistory = ({ chat, className, ...props }) => {
+  const containerEndRef = useRef(null);
   const elementClasses = ClassNames("message-history", className);
+
+  const scrollToBottom = () => {
+    containerEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [chat]);
 
   return (
     <div {...props} className={elementClasses}>
@@ -19,6 +26,7 @@ const MessageHistory = ({ chat, className, ...props }) => {
           isMine={m?.isMine}
         />
       ))}
+      <div ref={containerEndRef} />
     </div>
   );
 };

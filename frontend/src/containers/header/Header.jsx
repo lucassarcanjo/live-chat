@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "../../components/button";
 
+import Logo from "../../assets/logo.svg";
 import "./Header.scss";
 
-const Header = () => (
-  <header className="chat__header">
-    <h2 className="chat__title">Live Chat</h2>
-    <Button label="Messages" type="button" className="chat__button" />
-    <Button
-      label="Participants"
-      type="button"
-      className="chat__button"
-      variant="secondary"
-    />
-  </header>
-);
+const Header = () => {
+  const [currentTab, setCurrentTab] = useState(0);
+
+  useEffect(() => setCurrentTab(currentTab + 1), []);
+
+  return (
+    <header className="header">
+      <div className="header__logo">
+        <img src={Logo} alt="Logo" />
+      </div>
+      <Button label="Messages" type="button" className="header__button" />
+      <Button
+        label="Participants"
+        type="button"
+        className="header__button"
+        variant="secondary"
+      />
+    </header>
+  );
+};
 
 export default Header;

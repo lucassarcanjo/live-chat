@@ -41,7 +41,7 @@ const useChat = (username) => {
       setHubConnection(connection);
     };
 
-    hubInitialize();
+    if (username) hubInitialize();
   }, [username]);
 
   const sendChatMessage = async (message) => {
