@@ -1,4 +1,17 @@
 .message-history {
   display: flex;
   flex-flow: column nowrap;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ced2db;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
