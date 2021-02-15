@@ -1,4 +1,4 @@
-const baseApiUrl = "https://localhost:5001" || process.env.REACT_APP_API_URL;
+const baseApiUrl = process.env.REACT_APP_API_URL || "https://localhost:5001";
 export const websocketHubUrl = "${/hubs/chat";
 export const sendMessageHubUrl = `${baseApiUrl}/chat/messages`;
 export const randomNameApiUrl =
