@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, push and deploy to Heroku
         id: heroku
-        uses: lucassarcanjo/heroku-deploy@v2.1.2
+        uses: jctaveras/heroku-deploy@v2.1.1
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
           api_key: ${{ secrets.HEROKU_API_KEY }}
           app_name: ${{ secrets.HEROKU_APP_NAME }}
-          dockerfile_path: 'backend'
+          dockerfile_path: './backend'
