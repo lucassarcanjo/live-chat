@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, push and deploy to Heroku
         id: heroku
-        uses: lucassarcanjo/heroku-deploy@2.1.4
+        uses: lucassarcanjo/heroku-deploy@2.1.5
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
           api_key: ${{ secrets.HEROKU_API_KEY }}
