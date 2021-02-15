@@ -1,5 +1,6 @@
-export const websocketHubUrl = "https://localhost:5001/hubs/chat";
-export const sendMessageHubUrl = "https://localhost:5001/chat/messages";
+const baseApiUrl = "https://localhost:5001" || process.env.REACT_APP_API_URL;
+export const websocketHubUrl = "${/hubs/chat";
+export const sendMessageHubUrl = `${baseApiUrl}/chat/messages`;
 export const randomNameApiUrl =
   "https://random-name-generator-api.herokuapp.com/name";
 
