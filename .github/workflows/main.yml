@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, push and deploy to Heroku
         id: heroku
-        uses: lucassarcanjo/heroku-deploy@2.1.14
+        uses: lucassarcanjo/heroku-deploy@2.1.15
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         with:
