@@ -16,4 +16,4 @@ COPY --from=build-env /app/out .
 
 # Run the app on container startup
 # ENTRYPOINT [ "dotnet", "LiveChat.dll" ]
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet LiveChat.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet out/LiveChat.dll
