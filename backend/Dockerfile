@@ -7,7 +7,7 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . .
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o out --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
@@ -16,4 +16,4 @@ COPY --from=build-env /app/out .
 
 # Run the app on container startup
 # ENTRYPOINT [ "dotnet", "LiveChat.dll" ]
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet out/LiveChat.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet LiveChat.dll
