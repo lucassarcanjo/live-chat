@@ -27,6 +27,8 @@ namespace LiveChat
         {
             services.AddSignalR();
 
+            services.AddHealthChecks();
+
             services.AddCors(options =>
                 options.AddDefaultPolicy(policy =>
                     policy.AllowAnyHeader()
@@ -56,6 +58,7 @@ namespace LiveChat
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapHub<ChatHub>("/hubs/chat");
             });
         }
