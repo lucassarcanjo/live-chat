@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@microsoft/signalr": "^5.0.1",
+    "@microsoft/signalr": "^6.0.10",
     "@vitejs/plugin-react": "^2.2.0",
     "classnames": "^2.3.2",
     "fontsource-poppins": "^3.1.5",
@@ -18,11 +18,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
-    "react-router-dom": "^6.4.3",
     "sass": "^1.30.0",
     "typescript": "^4.8.4",
     "vite": "^3.2.2",
-    "vite-tsconfig-paths": "^3.5.2"
+    "vite-tsconfig-paths": "^3.5.2",
+    "zustand": "^4.1.4"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

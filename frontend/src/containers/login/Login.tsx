@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { FormEvent, useEffect, useState } from "react";
 
+import { useUserStore } from "~/hooks/useUserStore";
 import { Button } from "../../components/button";
-import Input from "../../components/input";
+import { Input } from "../../components/input";
 import useRandomName from "../../hooks/useRandomName";
-
 import Logo from "../../assets/logo.svg";
 import "./Login.scss";
 
-export interface LoginProps {
-  setUsername: (username: string) => void;
-  setLogin: () => void;
-}
-
-const Login = ({ setUsername, setLogin }: LoginProps) => {
-  const [input, setInput] = useState("");
+export const Login = () => {
+  const [username, setUsername] = useState("");
   const { name: randomName } = useRandomName();
+  const { login } = useUserStore();
 
   useEffect(() => {
-    setInput(randomName);
+    setUsername(randomName);
   }, [randomName]);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setUsername(input);
-    setLogin();
+    login(username);
   };
 
   return (
@@ -41,9 +35,9 @@ const Login = ({ setUsername, setLogin }: LoginProps) => {
             autoFocus
             type="text"
             id="user-input"
-            value={input}
+            value={username}
             className="login__input"
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Button
             type="submit"
@@ -55,11 +49,6 @@ const Login = ({ setUsername, setLogin }: LoginProps) => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  setUsername: PropTypes.func.isRequired,
-  setLogin: PropTypes.func.isRequired,
 };
 
 export default Login;

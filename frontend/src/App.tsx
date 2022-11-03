@@ -1,31 +1,25 @@
-import { useState } from "react";
-
-import MessageHistory from "./containers/messagehistory";
+import { MessageHistory } from "./containers/messagehistory";
 import ChatInput from "./containers/chatinput";
 import Header from "./containers/header";
 import Login from "./containers/login";
-import useChat from "./hooks/useChat";
+import { useChat } from "./hooks/useChat";
+import { useUserStore } from "./hooks/useUserStore";
 
 import "fontsource-poppins";
 import "./styles/global.scss";
 import "./App.scss";
 
 export const App = () => {
-  const [username, setUsername] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
-  const [chat, sendChatMessage] = useChat(username);
-
-  const handleLogin = () => {
-    setIsLogged(true);
-  };
+  const { user } = useUserStore();
+  const { messages, sendMessage } = useChat();
 
   return (
     <div className="chat">
       <Header />
-      {!isLogged && <Login setUsername={setUsername} setLogin={handleLogin} />}
+      {!user && <Login />}
 
-      <MessageHistory chat={chat} className="chat__main" />
-      <ChatInput sendMessage={sendChatMessage} className="chat__footer" />
+      <MessageHistory messages={messages} className="chat__main" />
+      <ChatInput sendMessage={sendMessage} className="chat__footer" />
     </div>
   );
 };
