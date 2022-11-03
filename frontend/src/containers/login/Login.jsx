@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import Button from "../../components/button";
+import { Button } from "../../components/button";
 import Input from "../../components/input";
 import useRandomName from "../../hooks/useRandomName";
 

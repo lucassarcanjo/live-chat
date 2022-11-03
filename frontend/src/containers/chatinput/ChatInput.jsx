@@ -5,7 +5,7 @@ import { Send } from "react-feather";
 
 // import { fakeNameGeneratorApi } from "../../constants";
 import Input from "../../components/input";
-import Button from "../../components/button";
+import { Button } from "../../components/button";
 
 import "./ChatInput.scss";
 
