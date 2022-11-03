@@ -8,15 +8,20 @@ import useRandomName from "../../hooks/useRandomName";
 import Logo from "../../assets/logo.svg";
 import "./Login.scss";
 
-const Login = ({ setUsername, setLogin }) => {
+export interface LoginProps {
+  setUsername: (username: string) => void;
+  setLogin: () => void;
+}
+
+const Login = ({ setUsername, setLogin }: LoginProps) => {
   const [input, setInput] = useState("");
-  const [randomName] = useRandomName();
+  const { name: randomName } = useRandomName();
 
   useEffect(() => {
     setInput(randomName);
   }, [randomName]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setUsername(input);
     setLogin();
@@ -42,7 +47,7 @@ const Login = ({ setUsername, setLogin }) => {
           />
           <Button
             type="submit"
-            variant="action"
+            // variant="action"
             label="Let's chat!"
             className="login__button"
           />
