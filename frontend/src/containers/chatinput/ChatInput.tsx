@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { FormEvent, useState } from "react";
 import ClassNames from "classnames";
 import { Send } from "react-feather";
 
-// import { fakeNameGeneratorApi } from "../../constants";
-import { Input } from "../../components/input";
-import { Button } from "../../components/button";
-
+import { Input } from "~/components/input";
+import { Button } from "~/components/button";
 import "./ChatInput.scss";
 
-const ChatInput = ({ sendMessage, className, ...props }) => {
+export interface ChatInputProps {
+  className: string;
+  sendMessage: (message: string) => void;
+}
+
+export const ChatInput = ({ sendMessage, className }: ChatInputProps) => {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     if (!message) return;
 
-    await sendMessage(message);
+    sendMessage(message);
     setMessage("");
   };
 
   return (
     <form
-      {...props}
       className={ClassNames(className, "chatinput")}
       onSubmit={handleSubmit}
     >
@@ -37,19 +37,7 @@ const ChatInput = ({ sendMessage, className, ...props }) => {
         type="submit"
         label={<Send size={18} />}
         className="chatinput__button"
-        variant="action"
       />
     </form>
   );
 };
-
-ChatInput.propTypes = {
-  sendMessage: PropTypes.func.isRequired,
-  className: PropTypes.string,
-};
-
-ChatInput.defaultProps = {
-  className: "",
-};
-
-export default ChatInput;

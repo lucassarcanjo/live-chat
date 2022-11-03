@@ -1,7 +1,7 @@
 import { MessageHistory } from "./containers/messagehistory";
-import ChatInput from "./containers/chatinput";
-import Header from "./containers/header";
-import Login from "./containers/login";
+import { ChatInput } from "./containers/chatinput";
+import { Header } from "./containers/header";
+import { Login } from "./containers/login";
 import { useChat } from "./hooks/useChat";
 import { useUserStore } from "./hooks/useUserStore";
 
@@ -23,5 +23,3 @@ export const App = () => {
     </div>
   );
 };
-
-export default App;

@@ -1,8 +1,8 @@
-import { Button } from "../../components/button";
-import Logo from "../../assets/logo.svg";
+import { Button } from "~/components/button";
+import Logo from "~/assets/logo.svg";
 import "./Header.scss";
 
-const Header = () => (
+export const Header = () => (
   <header className="header">
     <div className="header__logo">
       <img src={Logo} alt="Logo" />
@@ -15,5 +15,3 @@ const Header = () => (
     />
   </header>
 );
-
-export default Header;

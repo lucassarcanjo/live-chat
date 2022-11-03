@@ -5,7 +5,7 @@ import "./Button.scss";
 export interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   className?: string;
   children?: React.ReactNode;
-  label?: string;
+  label?: string | React.ReactNode;
   icon?: React.ReactNode;
   variant?: "primary" | "secondary";
 }
