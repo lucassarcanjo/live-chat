@@ -5,12 +5,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) and (stroke-color: transparent) {
-      height: -webkit-fill-available;
-    }
-  }
+  height: calc(var(--vh, 1vh) * 100);
 
   &__wrapper {
     display: flex;

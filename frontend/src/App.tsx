@@ -3,7 +3,7 @@ import { ChatInput } from "./containers/chatinput";
 import { Header } from "./containers/header";
 import { Login } from "./containers/login";
 import { Participants } from "./containers/participants";
-import { useChat, useUserStore } from "./hooks";
+import { useChat, useUserStore, useRealViewPort } from "./hooks";
 
 import "fontsource-poppins";
 import "./styles/global.scss";
@@ -12,6 +12,7 @@ import "./App.scss";
 export const App = () => {
   const { user } = useUserStore();
   const { messages, sendMessage } = useChat();
+  useRealViewPort();
 
   return (
     <div className="chat">
