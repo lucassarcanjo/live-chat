@@ -1,6 +1,4 @@
-// TODO: change to environment url
-// const baseApiUrl = "https://live-chat-box.herokuapp.com";
-const baseApiUrl = "https://localhost:5001";
+const baseApiUrl = import.meta.env.VITE_API_URL ?? "https://localhost:5001";
 export const websocketHubUrl = `${baseApiUrl}/hubs/chat`;
 export const sendMessageHubUrl = `${baseApiUrl}/chat/messages`;
 export const randomNameApiUrl =
