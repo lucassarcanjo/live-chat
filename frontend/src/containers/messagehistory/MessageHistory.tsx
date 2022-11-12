@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import ClassNames from "classnames";
 
-import Message from "../../components/message";
+import { Message } from "~/components/message";
 import { ChatMessage, MessageType, useUserStore } from "~/hooks";
 import "./MessageHistory.scss";
 
