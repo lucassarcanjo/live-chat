@@ -6,10 +6,14 @@ Online chat developed to learn websockets using SignalR. To test open the [app](
 
 ## Tech Stack
 
-- .NET 5
 - React
+- Typescript
 - SignalR
 - Sass
+- Zustand
+- Vite
+- .NET 6
+- Docker
 
 ## Infra and Continuous Deployment
 
