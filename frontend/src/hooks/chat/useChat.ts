@@ -45,7 +45,7 @@ export const useChat = () => {
 
         addMessage({
           user: hubUser,
-          type: MessageType.EnterMessage,
+          type: MessageType.UserJoin,
           timestamp: Date.now(),
         });
       });

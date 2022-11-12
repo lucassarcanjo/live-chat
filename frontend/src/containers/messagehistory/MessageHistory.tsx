@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import ClassNames from "classnames";
 
-import { Message } from "~/components/message";
 import { ChatMessage, MessageType, useUserStore } from "~/hooks";
+import { Message } from "~/components/message";
 import "./MessageHistory.scss";
 
 export interface MessageHistoryProps {
@@ -27,18 +27,28 @@ export const MessageHistory = ({
   return (
     <div className={elementClasses}>
       {messages.map((item) => {
-        const message =
-          item.type === MessageType.UserMessage
-            ? item.text
-            : "outro tipo de mensagem";
+        let message;
+
+        switch (item.type) {
+          case MessageType.UserMessage:
+            message = item.text;
+            break;
+          case MessageType.UserJoin:
+            message = <i>{MessageType.UserJoin}</i>;
+            break;
+          case MessageType.UserLeave:
+            message = <i>{MessageType.UserLeave}</i>;
+            break;
+        }
 
         return (
           <Message
             key={item.timestamp}
             username={item.user}
-            message={message}
             isMine={item.user === user}
-          />
+          >
+            {message}
+          </Message>
         );
       })}
       <div ref={containerEndRef} />

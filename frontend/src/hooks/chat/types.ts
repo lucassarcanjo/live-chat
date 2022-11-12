@@ -1,7 +1,7 @@
 export enum MessageType {
-  UserMessage,
-  EnterMessage,
-  LeaveMessage,
+  UserMessage = "UserMessage",
+  UserJoin = "Joined the chat",
+  UserLeave = "Left the chat",
 }
 
 export interface UserMessage {
@@ -14,13 +14,13 @@ export interface UserMessage {
 export interface EnterMessage {
   user: string;
   timestamp: number;
-  type: MessageType.EnterMessage;
+  type: MessageType.UserJoin;
 }
 
 export interface LeaveMessage {
   user: string;
   timestamp: number;
-  type: MessageType.LeaveMessage;
+  type: MessageType.UserLeave;
 }
 
 export type ChatMessage = UserMessage | EnterMessage | LeaveMessage;
