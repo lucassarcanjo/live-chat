@@ -10,7 +10,7 @@ COPY . .
 RUN dotnet publish -c Release -o out --no-restore
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime:6.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim as runtime
 WORKDIR /app
 COPY --from=build-env /app/out .
 
