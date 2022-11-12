@@ -5,7 +5,12 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  max-height: 100vh;
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+      height: -webkit-fill-available;
+    }
+  }
 
   &__wrapper {
     display: flex;

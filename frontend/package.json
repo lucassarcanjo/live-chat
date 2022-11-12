@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint ."
@@ -18,7 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
-    "sass": "^1.30.0",
+    "sass": "^1.56.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.2",
     "vite-tsconfig-paths": "^3.5.2",
