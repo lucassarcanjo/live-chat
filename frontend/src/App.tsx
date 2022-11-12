@@ -2,8 +2,8 @@ import { MessageHistory } from "./containers/messagehistory";
 import { ChatInput } from "./containers/chatinput";
 import { Header } from "./containers/header";
 import { Login } from "./containers/login";
-import { useChat } from "./hooks/useChat";
-import { useUserStore } from "./hooks/useUserStore";
+import { Participants } from "./containers/participants";
+import { useChat, useUserStore } from "./hooks";
 
 import "fontsource-poppins";
 import "./styles/global.scss";
@@ -15,11 +15,20 @@ export const App = () => {
 
   return (
     <div className="chat">
-      <Header />
       {!user && <Login />}
 
-      <MessageHistory messages={messages} className="chat__main" />
-      <ChatInput sendMessage={sendMessage} className="chat__footer" />
+      <Header />
+
+      {user && (
+        <div className="chat__wrapper">
+          <div className="chat__container">
+            <MessageHistory messages={messages} className="chat__main" />
+            <ChatInput sendMessage={sendMessage} className="chat__footer" />
+          </div>
+
+          <Participants />
+        </div>
+      )}
     </div>
   );
 };

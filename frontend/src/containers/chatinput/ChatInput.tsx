@@ -28,6 +28,7 @@ export const ChatInput = ({ sendMessage, className }: ChatInputProps) => {
       onSubmit={handleSubmit}
     >
       <Input
+        autoFocus
         type="text"
         value={message}
         className="chatinput__input"

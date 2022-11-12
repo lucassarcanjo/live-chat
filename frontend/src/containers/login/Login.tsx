@@ -1,10 +1,9 @@
 import { FormEvent, useEffect, useState } from "react";
 
-import { useUserStore } from "~/hooks/useUserStore";
+import { useUserStore, useRandomName } from "~/hooks";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
-import useRandomName from "../../hooks/useRandomName";
-import Logo from "../../assets/logo.svg";
+import Logo from "~/assets/logo.svg";
 import "./Login.scss";
 
 export const Login = () => {

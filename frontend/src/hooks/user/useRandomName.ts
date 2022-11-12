@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { randomNameApiUrl } from "../constants";
+import { randomNameApiUrl } from "../../constants";
 
-const useRandomName = (defaultName?: string) => {
+export const useRandomName = (defaultName?: string) => {
   const [name, setName] = useState("Smart Vanderli");
 
   useEffect(() => {
@@ -21,5 +21,3 @@ const useRandomName = (defaultName?: string) => {
 
   return { name, setName };
 };
-
-export default useRandomName;

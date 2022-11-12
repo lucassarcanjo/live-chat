@@ -1,0 +1,55 @@
+.side-container {
+  height: 100%;
+  width: 350px;
+  background-color: #edeff4;
+  border-left: 1px solid #ccc;
+  transition: width 0.2s ease-in-out;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    border: 0;
+    position: absolute;
+  }
+
+  &--hidden {
+    width: 0;
+    border: 0;
+    padding: 0;
+  }
+
+  &__wrapper {
+    width: 350px;
+    padding: 12px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__count {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 12px;
+  }
+
+  &__list {
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 4px 8px;
+    list-style-type: none;
+
+    &-item {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}

@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import ClassNames from "classnames";
 
 import Message from "../../components/message";
-import { ChatMessage, MessageType } from "~/hooks/types";
-import { useUserStore } from "~/hooks/useUserStore";
+import { ChatMessage, MessageType, useUserStore } from "~/hooks";
 import "./MessageHistory.scss";
 
 export interface MessageHistoryProps {

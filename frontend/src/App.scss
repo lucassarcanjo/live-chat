@@ -1,11 +1,29 @@
 .chat {
   background-color: #edeff4;
-  border-radius: 10px;
   display: flex;
   flex-flow: column nowrap;
   position: relative;
   width: 100vw;
   height: 100vh;
+  max-height: 100vh;
+
+  &__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    height: calc(100% - 90px);
+    overflow: hidden;
+    position: relative;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 2;
+  }
 
   &__main {
     padding: 10px;

@@ -5,8 +5,8 @@ import {
   HubConnectionState,
 } from "@microsoft/signalr";
 
-import { websocketHubUrl } from "../constants";
-import { useUserStore } from "./useUserStore";
+import { websocketHubUrl } from "../../constants";
+import { useUserStore } from "../user/useUserStore";
 import { useChatStore } from "./useChatStore";
 import { MessageType } from "./types";
 
@@ -23,7 +23,7 @@ export interface HubMessage {
 }
 
 export const useChat = () => {
-  const { user } = useUserStore();
+  const { user, userJoined } = useUserStore();
   const { messages, addMessage } = useChatStore();
   const [hubConnection, setHubConnection] = useState<HubConnection | null>(
     null
@@ -40,13 +40,15 @@ export const useChat = () => {
 
       // Other users Sign In events
       connection.invoke(HubMethod.SignIn, user);
-      connection.on(HubMethod.UserNotification, (hubUser) =>
+      connection.on(HubMethod.UserNotification, (hubUser) => {
+        userJoined(hubUser);
+
         addMessage({
           user: hubUser,
           type: MessageType.EnterMessage,
           timestamp: Date.now(),
-        })
-      );
+        });
+      });
 
       // Message events
       connection.on(HubMethod.ReceiveMessage, (chatMessage: HubMessage) =>
@@ -62,7 +64,7 @@ export const useChat = () => {
     };
 
     if (user) hubInitialize();
-  }, [addMessage, user]);
+  }, [user, addMessage, userJoined]);
 
   const sendMessage = async (message: string) => {
     if (hubConnection?.state !== HubConnectionState.Connected) return; // TODO return feedback to user
